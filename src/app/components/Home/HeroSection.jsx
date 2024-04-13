@@ -2,13 +2,14 @@ import React from "react";
 import { Button } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Carousels from "./Carousels";
 const HeroSection = () => {
   const router = useRouter()
 
   function handleAbsensei() {
     router.push("/me")
   }
-  return (
+  return (<>
     <div class="hero min-h-screen background-image: url();">
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-center text-neutral-content">
@@ -19,6 +20,8 @@ const HeroSection = () => {
       </div>
     </div>
   </div>
+  <Carousels/>
+</>
   );
 };
 

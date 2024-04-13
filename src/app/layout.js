@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           {children}
           {/* </AuthUser> */}
           <Footer/>
-          <BottomNavigation className="pb-16"/>
+          {/* <BottomNavigation className="pb-16"/> */}
         </Providers>
       </body>
     </html>
