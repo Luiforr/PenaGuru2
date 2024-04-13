@@ -324,27 +324,27 @@ export default function EditProfile() {
               <p className="font-bold text-2xl mt-8  text-sky-300 text-center">
                 Pena Guru
               </p>
-              {userData.avatar? ( <> <div className="avatar item-center justify-center text-center">
-                <div class="avatar placeholder ">
-                 
-                <Avatar
-                src={avatarUrl}
-                className="w-24 h-22 rounded-full"
-                />
-                
-                </div>
-              </div></> ):( <>
-               <div className="avatar item-center justify-center text-center">
-                <div class="avatar placeholder ">
-                  <div class="bg-blue-700 text-white rounded-full w-24">
-                  <span className="text-4xl">U</span>
+              {userData.avatar ? (
+                <>
+                  <div className="avatar item-center justify-center text-center">
+                    <div class="avatar placeholder ">
+                      <div class="bg-blue-700 text-white rounded-full w-24">
+                        <img src={avatarUrl} alt="" />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              </>
-            
+                </>
+              ) : (
+                <>
+                  <div className="avatar item-center justify-center text-center">
+                    <div class="avatar placeholder ">
+                      <div class="bg-blue-700 text-white rounded-full w-24">
+                        <span className="text-4xl">U</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
               )}
-        
             </div>
             <input
               type="file"
