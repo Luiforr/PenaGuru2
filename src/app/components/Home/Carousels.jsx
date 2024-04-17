@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import React from "react";
 import { Carousel } from "antd";
 import BG from "../../../../public/Bg.png";
-import { Image } from "@nextui-org/react";
+import Image from "next/image";
 const contentStyle = {
   height: "160px",
   color: "#fff",
@@ -11,16 +11,17 @@ const contentStyle = {
   background: "#364d79",
 };
 const Carousels = () => (
-  <Carousel autoplay autoplaySpeed={5000}>
-    <div>
-        <Image  style={contentStyle} src="../../../../public/Bg.png" alt="" />
+  <><div className="items-center justify-center mx-auto w-full mt-6">
+
+  <Carousel autoplay autoplaySpeed={3000} >
+    <div >
+        <Image src={BG}   alt="" />
     </div>
     <div>
-      <h3 style={contentStyle}>
-      <Image   src="../../../../public/Bg.png" alt="" />
-
-      </h3>
+      <Image src={BG} alt="" />
     </div>
   </Carousel>
+  </div>
+  </>
 );
 export default Carousels;
