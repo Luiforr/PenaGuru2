@@ -33,7 +33,7 @@ export default function LandingPage() {
   const [userData, setUserData] = useState({
     nama_user: "",
     jenis_user: "",
-  });       
+  });
   const [presensiData, setPresensiData] = useState(null);
   const [foto, setFoto] = useState(null);
   const [placement, setPlacement] = useState("bottom");
@@ -297,9 +297,7 @@ export default function LandingPage() {
                   )}
                 </>
               ) : (
-                <>
-                 
-                </>
+                <></>
               )}
             </>
           ) : (
@@ -389,17 +387,19 @@ export default function LandingPage() {
           <div className="mt-4">
             {absensi.map((absen, index) => (
               <div className="mb-4" key={index}>
-                <div class="border border-md shadow-md rounded-md mx-5 mb-5 bg-white">
+                <div className="border border-md shadow-md rounded-md mx-5 mb-5 bg-white">
                   <div className="lg:flex">
                     <div className="stat place-items-center">
-                      <div class="stat-figure text-secondary"></div>
-                      <div class="stat-title">Jam Masuk</div>
-                      <div class="stat-value text-medium">{absen.check_in}</div>
+                      <div className="stat-figure text-secondary"></div>
+                      <div className="stat-title">Jam Masuk</div>
+                      <div className="stat-value text-medium">
+                        {absen.check_in}
+                      </div>
                     </div>
                     <div className="stat place-items-center">
-                      <div class="stat-figure text-secondary"></div>
-                      <div class="stat-title">Jam Keluar</div>
-                      <div class="stat-value text-medium">
+                      <div className="stat-figure text-secondary"></div>
+                      <div className="stat-title">Jam Keluar</div>
+                      <div className="stat-value text-medium">
                         {absen.check_out}
                       </div>
                       <div class="stat-figure text-secondary"></div>
@@ -443,39 +443,110 @@ export default function LandingPage() {
                 )}
               </ModalHeader>
               <ModalBody>
-                <h1>Presensi</h1>
                 <p>
                   Selamat datang, {userData.nama_user} ({userData.jenis_user})
                 </p>
                 {presensiData && presensiData.check_out ? (
-                  <p>Kamu sudah absen. Silahkan pulang.</p>
+                  <>
+                    <p>Kamu sudah absen. Silahkan pulang.</p>
+                    <Button
+                      className="mt-3"
+                      color="danger"
+                      variant="light"
+                      onPress={onClose}
+                    >
+                      Close
+                    </Button>
+                  </>
                 ) : (
                   <div>
                     {presensiData && presensiData.check_in ? (
-                      <div>
-                        <Button onClick={handleCheckOut}>Check-Out</Button>
-                      </div>
+                      <>
+                        {now > checkOutTime ? (
+                          <>
+                            {" "}
+                            <div className="flex gap-2">
+                              <Button
+                                type="primary"
+                                className="  bg-blue-500 text-white"
+                                onClick={handleCheckOut}
+                              >
+                                Check-Out
+                              </Button>
+                              <Button
+                                className=""
+                                color="danger"
+                                variant="light"
+                                onPress={onClose}
+                              >
+                                Close
+                              </Button>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-sm">Belum waktunya checkout</p>
+                            <Button
+                              className="mt-3"
+                              color="danger"
+                              variant="light"
+                              onPress={onClose}
+                            >
+                              Close
+                            </Button>
+                          </>
+                        )}
+                      </>
                     ) : (
                       <>
-                        <Input
-                          type="file"
-                          accept="image/*"
-                          onChange={eventFoto}
-                        />
-                        <Button onClick={handleCheckIn}>Check-In</Button>
+                        {now > checkInTime ? (
+                          <>
+                            <p className="text-sm">
+                              Maaf, sudah melewati waktu checkin
+                            </p>
+                            <Button
+                              className="mt-3"
+                              color="danger"
+                              variant="light"
+                              onPress={onClose}
+                            >
+                              Close
+                            </Button>
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-xs">
+                              Silahkan masukan gambar terlebih dahulu sebelum
+                              checkin
+                            </p>
+                            <Input
+                              type="file"
+                              accept="image/*"
+                              onChange={eventFoto}
+                            />
+                            <div className="flex gap-2">
+                              <Button
+                                className="mt-3 bg-blue-500 text-white"
+                                onClick={handleCheckIn}
+                              >
+                                Check-In
+                              </Button>
+                              <Button
+                                className="mt-3"
+                                color="danger"
+                                variant="light"
+                                onPress={onClose}
+                              >
+                                Close
+                              </Button>
+                            </div>
+                          </>
+                        )}
                       </>
                     )}
                   </div>
                 )}
               </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>
