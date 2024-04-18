@@ -10,7 +10,7 @@ import AuthUser from "./middleware/user"
 export const metadata = {
   metadataBase: new URL('https://penaguru-re.vercel.app/'),
   title: {
-    default: 'https://penaguru-re.vercel.app/',
+    default: 'PENAGURU SMKN7 BALEENDAH',
     template: `%s - https://penaguru-re.vercel.app/`,
   },
   description: 'Sebuah Website Presensi SMKN7 Untuk Guru Supaya Pendataan Lebih Mudah Dan Praktis',
