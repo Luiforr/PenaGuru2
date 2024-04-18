@@ -8,10 +8,10 @@ const inter = Inter({ subsets: ["latin"] });
 import BottomNavigation from "./components/Mobile/BotNav";
 import AuthUser from "./middleware/user"
 export const metadata = {
-  metadataBase: new URL('https://penaguru-re.vercel.app/'),
+  metadataBase: new URL('https://penagurusmkn7baleendah.vercel.app/'),
   title: {
     default: 'PENAGURU SMKN7 BALEENDAH',
-    template: `%s - https://penaguru-re.vercel.app/`,
+    template: `%s - https://penagurusmkn7baleendah.vercel.app/`,
   },
   description: 'Sebuah Website Presensi SMKN7 Untuk Guru Supaya Pendataan Lebih Mudah Dan Praktis',
   keywords: [
@@ -30,15 +30,15 @@ export const metadata = {
   ],
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: 'https://penaguru-re.vercel.app/',
-    title: 'PenaGuru - https://penaguru-re.vercel.app/',
+    locale: "ID",
+    url: 'https://penagurusmkn7baleendah.vercel.app/',
+    title: 'PenaGuru - https://penagurusmkn7baleendah.vercel.app/',
     description: 'Sebuah Website Presensi SMKN7 Untuk Guru Supaya Pendataan Lebih Mudah Dan Praktis',
     siteName: 'https://penaguru-re.vercel.app/',
   },
   twitter: {
     card: "summary_large_image",
-    title: 'PenaGuru - https://penaguru-re.vercel.app/',
+    title: 'PenaGuru - https://penagurusmkn7baleendah.vercel.app/',
     description: 'Sebuah Website Presensi SMKN7 Untuk Guru Supaya Pendataan Lebih Mudah Dan Praktis',
     images: '${siteUrl}/og.jpg',
     creator: '@@nothing',
