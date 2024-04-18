@@ -40,6 +40,8 @@ import { RiAdminLine } from "react-icons/ri";
 import Directory from "./Directory";
 import DrawerNav from "./DrawerNav";
 import Draw from "./Draw";
+import penagurulogo from "../../../../public/PenaGuruRes.png";
+import Image from "next/image";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,56 +88,70 @@ export default function Header() {
 
   return (
     <>
- 
       <Navbar
         isBordered
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
-      > <Draw/>
-     
+      >
+        <Draw />
         <NavbarContent className="sm:hidden pr-3" justify="start">
           <NavbarBrand>
             <Link
               className="font-bold text-blue-500 cursor-pointer"
               onClick={handleHome}
             >
-              PenaGuru
+              <Image src={penagurulogo} width={100} />
             </Link>
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="start">
+        <NavbarContent className="hidden sm:flex">
           <NavbarBrand>
             <Link
-              className="font-bold text-blue-500 cursor-pointer"
+              className="font-bold text-blue-500 cursor-pointer ease-out duration-200"
               onClick={handleHome}
             >
-              PenaGuru
+              <Image src={penagurulogo} width={100} />
             </Link>
           </NavbarBrand>
+        </NavbarContent>
+
+        <NavbarContent className="hidden sm:flex gap-10" justify="center">
           <NavbarItem>
-            <Link className="hover:text-lg hover:underline hover:cursor-pointer" href="/me" underline="">
+            <Link
+              className="underline-offset-8 hover:cursor-pointer transition hover:underline hover:ease-out duration-300 hover:scale-110 hover:text-sky-500 active:text-black"
+              href="/me"
+              underline=""
+            >
               Presensi
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link className="hover:text-lg hover:underline hover:cursor-pointer" href="/me/statistik" aria-current="page" underline="">
+            <Link
+              className="underline-offset-8 hover:cursor-pointer transition hover:underline hover:ease-out duration-300 hover:scale-110 hover:text-sky-500 active:text-black"
+              href="/me/statistik"
+              aria-current="page"
+              underline=""
+            >
               Statistik
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link className="hover:text-lg hover:underline hover:cursor-pointer" color="purple" href="/contact" underline="">
+            <Link
+              className="underline-offset-8 hover:cursor-pointer transition hover:underline hover:ease-out duration-300 hover:scale-110 hover:text-sky-500 active:text-black"
+              href="/contact"
+              underline=""
+            >
               Contact Us
             </Link>
           </NavbarItem>
-          
         </NavbarContent>
 
         <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <Button
               onClick={handleLoginClick}
-              className="btn bg-dark"
+              className="bg-sky-500 hover:cursor-pointer transition hover:ease-out duration-300 hover:bg-sky-400 active:bg-sky-500 hover:scale-105 text-white border-1 active:scale-100"
               variant="shadow"
             >
               Login
@@ -144,7 +160,11 @@ export default function Header() {
           <NavbarItem>
             <Dropdown>
               <DropdownTrigger>
-                <Button className="btn bg-dark" href="#" variant="shadow">
+                <Button
+                  className="bg-sky-500 hover:cursor-pointer transition hover:ease-out duration-300 hover:scale-105 text-white border-1 active:scale-100 hover:bg-sky-400 active:bg-sky-500"
+                  href="#"
+                  variant="shadow"
+                >
                   Member
                 </Button>
               </DropdownTrigger>
@@ -202,9 +222,7 @@ export default function Header() {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
-        
       </Navbar>
-     
     </>
   );
 }

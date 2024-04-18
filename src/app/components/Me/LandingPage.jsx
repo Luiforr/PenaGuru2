@@ -18,11 +18,22 @@ import { supabase } from "../../config/supabase";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import PenaGuru from "../../../../public/PenaGuru.png";
+import { FaUser } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { GrTechnology } from "react-icons/gr";
+import { IoIosHome } from "react-icons/io";
+import { FaPhone } from "react-icons/fa6";
+import { Skeleton } from "@nextui-org/react";
+
 export default function LandingPage() {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  const toggleLoad = () => {
+    setIsLoaded(!isLoaded);
+  };
   const [userData, setUserData] = useState({
     nama_user: "",
     jenis_user: "",
-  });
+  });       
   const [presensiData, setPresensiData] = useState(null);
   const [foto, setFoto] = useState(null);
   const [placement, setPlacement] = useState("bottom");
@@ -287,53 +298,69 @@ export default function LandingPage() {
                 </>
               ) : (
                 <>
-                  <div className="fixed  top-2 right-0  p-16 ">
-                    <div class="  p-4 mb-4 bg-red-500 text-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
-                      <p>Belum Waktunya checkout</p>
-                    </div>
-                  </div>
+                 
                 </>
               )}
             </>
           ) : (
             <>
-              { now > checkOutTime ?(
-              <>
-
-              </>):
-              (
-              <>
-              <div className="fixed  top-2 right-0  p-16 ">
-                <div class="  p-4 mb-4 bg-red-500 text-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
-                  <p>Anda Terlambat Absen</p>
-                </div>
-              </div>
-
-              </>
+              {now > checkOutTime ? (
+                <></>
+              ) : (
+                <>
+                  <div className="fixed  top-2 right-0  p-16 ">
+                    <div class="  p-4 mb-4 bg-red-500 text-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
+                      <p>Anda Terlambat Absen</p>
+                    </div>
+                  </div>
+                </>
               )}
             </>
           )}
         </>
       )}
       <div className="flex flex-col lg:flex-row justify-center lg:justify-start mx-5">
-        <div className="border border-md w-full lg:mr-5 lg:w-1/2 mt-5 lg:mb-5 justify-center text-center pb-5 shadow-lg rounded-lg">
-          <h1 className="text-5xl font-bold mt-10">Welcome Back</h1>
-          <Image
-            src={PenaGuru}
-            width={70}
-            height={70}
-            className="mx-auto my-8"
-          />
+        <div className="border border-md bg-white h-auto lg:mr-5 lg:w-1/3 my-2.5 justify-center pb-5 shadow-lg  rounded-lg">
           <div className="">
-            <h1 className="text-2xl">{userData.email}</h1>
-            <h1 className="mb-2">({userData.nama_user})</h1>
-            <h1 className="text-2xl">{userData.jenis_user}</h1>
+            <Image
+              src={PenaGuru}
+              width={300}
+              height={300}
+              className="mx-auto my-4"
+            />
+            <div className="mx-3">
+              <h1 className="flex">
+                <FaUser className="mt-0.5 mr-2 text-blue-500" />
+                {userData.nama_user}
+              </h1>
+
+              <h1 className="flex">
+                <MdEmail className="mt-1 mr-2 text-blue-500" />
+                {userData.email}
+              </h1>
+              <h1 className="flex">
+                <GrTechnology className="mr-2 mt-1 text-blue-500" />
+                {userData.jenis_user}
+              </h1>
+              <h1 className="flex">
+                <IoIosHome className="mt-0.5 mr-2 text-blue-500" />
+                {userData.alamat}
+              </h1>
+              <h1 className="flex">
+                <FaPhone className="mt-0.5 mr-2 text-blue-500" />
+                {userData.telepon}
+              </h1>
+            </div>
+            <Link href={"/me/edit"} className="flex justify-center">
+              <button className="mt-5 mx-3 w-full bg-blue-500 p-2 text-white rounded-md hover:ease-out duration-300 hover:scale-105 active:scale-100">
+                Edit Profile
+              </button>
+            </Link>
           </div>
-          <h1 className="btn btn-ghost ">Edit Profile</h1>
         </div>
 
-        <div className="border border-md w-full lg:w-screen my-5 shadow-lg lg:flex lg:flex-row rounded-lg ">
-          <div className="border border-md m-5 rounded-lg bg-blue-500 lg:w-1/2">
+        <div className="border border-md w-full my-2.5 shadow-lg bg-white rounded-lg ">
+          <div className="border border-md m-5 rounded-lg bg-blue-500 ">
             <h1 className="text-xl mx-3 mt-5 text-white">Administrator</h1>
             <h1 className="ml-3 text-3xl text-white">123456789</h1>
             <div className="rounded-md m-3 bg-blue-400 text-white">
@@ -352,56 +379,45 @@ export default function LandingPage() {
             </div>
             <div className="flex justify-center">
               <button
-                className="mt-4 mb-6 lg:mt-2.5 lg:mb-0 btn border-0 bg-white text-black md:w-5/6 lg:w-1/2 rounded-md hover:bg-white hover:text-black text-lg"
+                className="mt-4 mb-6 lg:mb-4 btn border-0 bg-white text-black md:w-5/6 lg:w-1/2 rounded-md hover:bg-white hover:text-black text-lg"
                 onClick={onOpen}
               >
                 Absen
               </button>
             </div>
           </div>
-
-          <div className="border border-md m-5 lg:ml-0 rounded-lg lg:w-1/2 bg-blue-500">
-            <div className="justify-center mt-5 flex text-center rounded-lg">
-              <div className="bg-white p-2 rounded-lg">
-                <h1>Jarak dari kantor</h1>
-                <h1 className="font-bold text-2xl">200 Km</h1>
+          <div className="mt-4">
+            {absensi.map((absen, index) => (
+              <div className="mb-4" key={index}>
+                <div class="border border-md shadow-md rounded-md mx-5 mb-5 bg-white">
+                  <div className="lg:flex">
+                    <div className="stat place-items-center">
+                      <div class="stat-figure text-secondary"></div>
+                      <div class="stat-title">Jam Masuk</div>
+                      <div class="stat-value text-medium">{absen.check_in}</div>
+                    </div>
+                    <div className="stat place-items-center">
+                      <div class="stat-figure text-secondary"></div>
+                      <div class="stat-title">Jam Keluar</div>
+                      <div class="stat-value text-medium">
+                        {absen.check_out}
+                      </div>
+                      <div class="stat-figure text-secondary"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <h1 className="text-center text-white mt-3 mb-2 text-2xl font-bold">
-              Lokasi
-            </h1>
-            <div className="bg-white flex justify-center mx-5 text-center rounded-lg mb-4 h-52">
-              <h1 className="">Ceritanya ini map</h1>
-            </div>
+            ))}
+          </div>
+          <div className="">
+            <Link
+              href="/me/statistik"
+              className="text-lg text-blue-500 bg-white hover:text-white hover:bg-blue-500 mb-28 lg:mb-16 md:mb-16 xl:mb-16 btn flex justify-center mx-5"
+            >
+              Lihat Lebih Banyak
+            </Link>
           </div>
         </div>
-      </div>
-      {absensi.map((absen, index) => (
-        <div className="mb-4" key={index}>
-          <div class="border border-md shadow-md rounded-md mx-5 mb-5">
-            <div className="lg:flex">
-              <div className="stat place-items-center">
-                <div class="stat-figure text-secondary"></div>
-                <div class="stat-title">Jam Masuk</div>
-                <div class="stat-value text-medium"> {absen.check_in}</div>
-              </div>
-              <div className="stat place-items-center">
-                <div class="stat-figure text-secondary"></div>
-                <div class="stat-title">Jam Keluar</div>
-                <div class="stat-value text-medium"> {absen.check_out}</div>
-                <div class="stat-figure text-secondary"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-      <div className="">
-        <Link
-          href="/me/statistik"
-          className="text-lg text-blue-500 hover:text-white hover:bg-blue-500 mb-28 lg:mb-16 md:mb-16 xl:mb-16 btn flex justify-center mx-5"
-        >
-          Lihat Lebih Banyak
-        </Link>
       </div>
 
       <Modal size={size} isOpen={isOpen} onClose={onClose}>

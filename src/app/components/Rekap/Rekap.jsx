@@ -54,6 +54,9 @@ export default function Rekap() {
 
   return (
     <div>
+       <h1 className="font-bold text-center text-3xl sm:text-5xl mb-5 mt-3">
+        Rekap Absensi
+      </h1>
       <ul className="grid grid-cols-2 sm:grid-cols-3">
         {uniqueDates.map((date) => (
           <li className="" key={date.tanggal_absensi}>
