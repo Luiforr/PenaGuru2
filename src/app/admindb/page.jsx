@@ -7,17 +7,21 @@ import { supabase } from "../config/supabase.js";
 import { MdCoPresent } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
 import { FcStatistics } from "react-icons/fc";
+import { MdHistory } from "react-icons/md";
+import { BsFillTelephoneFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Card, CardHeader } from "@nextui-org/react";
 import TeacherCard from "../components/Guru/TeacherCard.jsx";
 import moment from "moment";
+import { Flex } from "@chakra-ui/react";
+import { FaHistory, FaUserEdit, FaRegEdit } from "react-icons/fa";
 import Link from "next/link";
 import { MdOutlineMarkEmailUnread } from "react-icons/md";
-import { BsFillPersonLinesFill } from "react-icons/bs";
+import { BsFillPersonLinesFill, BsTelephoneInboundFill  } from "react-icons/bs";
 import AdminRouteProtection from "../components/Admin/AdminRouterProtection.jsx";
 import BottomNavigation from "../components/Mobile/BotNav.jsx";
 import { FcAcceptDatabase } from "react-icons/fc";
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@nextui-org/react";
 const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [dataAdmin, setDataAdmin] = useState({
@@ -126,10 +130,42 @@ const AdminDashboard = () => {
   if (!isAdmin) {
     return <div>Anda tidak memiliki akses ke admin dashboard</div>;
   }
-
+  const handleContact = () => {
+    router.push("/admindb/contact");
+  };
+  const handleGuru = () => {
+    router.push("/admindb/guru");
+  };
+  const handleAbsen = () => {
+    router.push("/admindb/absen");
+  };
   return (
     <>
-     
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2">
+              {/* Widget 1 */}
+              <div className="bg-white p-4 rounded shadow-md cursor-pointer" onClick={handleGuru}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold mb-2">List Guru</h3>
+                  <BsFillPersonLinesFill size="2em" className="ml-auto" />
+                </div>
+
+              </div>
+              <div className="bg-white p-4 rounded shadow-md cursor-pointer" onClick={handleContact}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold mb-2">Contact</h3>
+                  <BsTelephoneInboundFill size="2em" className="ml-auto" />
+                </div>
+
+              </div>
+              <div className="bg-white p-4 rounded shadow-md cursor-pointer" onClick={handleAbsen}>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-lg font-semibold mb-2">List Absen</h3>
+                  <MdHistory size="2em" className="ml-auto" />
+                </div>
+
+              </div>
+              
+              </div>
     </>
   );
 };

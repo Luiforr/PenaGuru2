@@ -3,7 +3,7 @@ import { supabase } from "@/app/config/supabase";
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import Duivion from "../../../../public/Duivion.png";
+import Duivion from "../../../../../../public/Duivion.png"
 import { Item } from "@radix-ui/react-dropdown-menu";
 import { Card, CardHeader, CardBody, CardFooter, Box,
  Button, Heading,Stat,
@@ -14,26 +14,26 @@ import { Card, CardHeader, CardBody, CardFooter, Box,
  StatGroup,
   Stack, Flex, StackDivider, ButtonGroup, /*Image,*/
 Text } from '@chakra-ui/react'
-import PenaGuru from "../../../../public/PenaGuru.png"
+import PenaGuru from "../../../../../../public/PenaGuru.png"
 export default function IdGuru() {
   const [absensi, setAbsensi] = useState([]);
-  const { tanggal, namaguru } = useParams();
+  const { detail, nama } = useParams();
 
   useEffect(() => {
     async function fetchAbsensi() {
       try {
-        const decodedTanggal = decodeURIComponent(tanggal);
+        const decodedTanggal = decodeURIComponent(detail);
         
-        if (!decodedTanggal || !namaguru) return;
+        if (!decodedTanggal || !nama) return;
 
         const { data: absensiData, error } = await supabase
           .from("absensi")
           .select(`
           *,
-          profiles:id_guru(nama_user,telepon)
+          profiles:id_guru(nama_user,telepon,alamat)
         `)
           .eq("tanggal_absensi", decodedTanggal.replace(' ', '+'))
-          .eq("id_guru", namaguru);
+          .eq("id_guru", nama);
 
         if (error) {
           throw error;
@@ -56,40 +56,40 @@ export default function IdGuru() {
     }
 
     fetchAbsensi();
-  }, [tanggal, namaguru]);
+  }, [detail, nama]);
   return (
     <>
       <div className="mb-80">
       {absensi.map((absen) => (
         <div key={absen.id}>
           
-        <Card className="h-full">
+        <Card className="bg-gray-200">
           <CardHeader className="items-center justify-items-center text-center">
            <Image
                   src={PenaGuru}
-                  width={45}
-                  height={45}
+                  width={30}
+                  height={30}
                   className="float-left"
                   /> 
-                   <Heading size="lg">LAPORAN ABSEN</Heading>
+                   <Heading size="md">LAPORAN ABSEN</Heading>
           </CardHeader>
                    <Divider/>
 
           <CardBody>
-            <Stack spacing="4">
-              <Flex spacing="4">
-                <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
+            <Stack spacing="2">
+              <Flex spacing="1">
+                <Flex flex="1" gap="1" alignItems="center" flexWrap="wrap">
                   <Box className="space-between">
                     <Heading size="xs" textTransform="uppercase">
                       Keterangan Guru
                     </Heading>
-                    <Text pt="2" fontSize="sm">
+                    <Text pt="1" fontSize="sm">
                       Nama Guru: {absen.profiles.nama_user}
                     </Text>
-                    <Text pt="2" fontSize="sm">
+                    <Text pt="1" fontSize="sm">
                       Id Guru: {absen.id_guru}
                     </Text>
-                    <Text pt="2" fontSize="sm">
+                    <Text pt="1" fontSize="sm">
                       Telepon: {absen.profiles.telepon}
                     </Text>
                   </Box>
@@ -99,13 +99,13 @@ export default function IdGuru() {
               {absen.foto_kegiatan_url && (
                 <Image
                   src={absen.foto_kegiatan_url}
-                  width={250}
+                  width={200}
                   height={150}
                   className="items-center justify-items-center text-center "
                 />
               )}
               </Box>
-              <Stack spacing="4">
+              <Stack spacing="2">
                 <div className="mx-auto flex-end-component">
                   <Box>
                     <Stat>
@@ -130,8 +130,8 @@ export default function IdGuru() {
            <Box>
                 <Image
                   src={Duivion}
-                  width={90}
-                  height={90}
+                  width={60}
+                  height={60}
                   className="float-right"
                   />
                   </Box>

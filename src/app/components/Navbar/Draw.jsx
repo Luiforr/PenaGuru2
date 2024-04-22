@@ -9,7 +9,8 @@ import {
   DrawerCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { Button, NavbarBrand, NavbarContent } from "@nextui-org/react";
+import penagurulogo from "../../../../public/PenaGuruRes.png";
+import { Button, NavbarBrand, NavbarContent, Link, } from "@nextui-org/react";
 import { FiMenu } from "react-icons/fi";
 import { GoX } from "react-icons/go";
 import { useState, useEffect } from "react";
@@ -18,6 +19,7 @@ import {
   TiSocialYoutube,
   TiSocialFacebook,
 } from "react-icons/ti";
+import Image from "next/image";
 import { TfiWorld } from "react-icons/tfi";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../config/supabase";
@@ -71,7 +73,7 @@ export default function Draw() {
     router.push("https://smkn7baleendah.sch.id/");
   };
   const handleIg = () => {
-    router.push("#");
+    router.push("https://www.instagram.com/duivions/");
   };
   const handleMe = () => {
     router.push("/me");
@@ -110,12 +112,12 @@ export default function Draw() {
           >
             <NavbarContent className=" pr-3" justify="center">
               <NavbarBrand>
-                <p
-                  className="font-bold text-blue-500 cursor-pointer text-2xl"
-                  onClick={handleHom}
-                >
-                  PenaGuru
-                </p>
+              <Link
+              className="font-bold text-blue-500 cursor-pointer"
+              onClick={handleHom}
+            >
+              <Image src={penagurulogo} width={100} />
+            </Link>
               </NavbarBrand>
               <DrawerCloseButton
                 className="cursor-pointer sm:block md:block lg:hidden xl:hidden"

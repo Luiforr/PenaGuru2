@@ -28,7 +28,7 @@ const HeroSection = () => {
       </div> */}
       <div class=" hero max-h-[1400px]">
 
-       <div className="hero-content bg-gray-50 p-5 grid justify-cente gap-1 grid-cols-1 sm:grid-cols-2">
+       <div className="hero-content grid justify-center gap-1 grid-cols-1 sm:grid-cols-2">
               <div className="text-center text-neutral-content">
               <h1 class=" mb-3 mx-auto font-bold text-blue-500 mt-10 2 text-2xl sm:text-3xl">Mulai Harimu Dengan Absen Menggunakan Pena Guru</h1>
               <p class="mb-3 text-default-500 text-sm">

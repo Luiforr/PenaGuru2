@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { Divider } from "@nextui-org/react";
 export default function AdminDashboard({ children }) {
@@ -10,12 +11,12 @@ export default function AdminDashboard({ children }) {
             <Divider className="bg-gray-300 mt-2" />
             <ul className="mt-4">
               <li className="py-2">
-                <Link href="#" className="text-gray-300 hover:text-white">
+                <Link href="/admindb" className="text-gray-300 hover:text-white cursor-pointer">
                   Dashboard
                 </Link>
               </li>
               <li className="py-2">
-                <Link href="#" className="text-gray-300 hover:text-white">
+                <Link href="/admindb/guru" className="text-gray-300 hover:text-white cursor-pointer">
                   Users
                 </Link>
               </li>

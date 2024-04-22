@@ -5,13 +5,13 @@ import { Card } from "@nextui-org/react";
 import { useParams } from "next/navigation";
 import { Badge, Button, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { supabase } from "../../config/supabase";
+import { supabase } from "../../../config/supabase";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image"
-export default function RekapTanggalPage() {
-  const { tanggal } = useParams();
+export default function detailPage() {
+  const { detail } = useParams();
   const [absensi, setAbsensi] = useState([]);
   const [error, setError] = useState(null);
   const [isExpanded, setIsExpanded] = useState(null);
@@ -20,7 +20,7 @@ export default function RekapTanggalPage() {
   useEffect(() => {
     async function fetchAbsensi() {
       try {
-        const decodedTanggal = decodeURIComponent(tanggal);
+        const decodedTanggal = decodeURIComponent(detail);
 
         const { data: absensiData, error: absensiError } = await supabase
           .from("absensi")
@@ -28,23 +28,25 @@ export default function RekapTanggalPage() {
           *,
           profiles:id_guru(nama_user,alamat,telepon)
         `)
-          .eq("tanggal_absensi", decodedTanggal.replace(' ', '+'));
+        .eq("tanggal_absensi", decodedTanggal.replace(' ', '+'))
+     
+
 
 
         setAbsensi(absensiData);
       } catch (error) {
         console.error(
-          `Error fetching absensi for tanggal ${tanggal}:`,
+          `Error fetching absensi for tanggal ${detail}:`,
           error.message
         );
-        setError(`Failed to fetch absensi for tanggal ${tanggal}.`);
+        setError(`Failed to fetch absensi for tanggal ${detail}.`);
       }
     }
 
-    if (tanggal) {
+    if (detail) {
       fetchAbsensi();
     }
-  }, [tanggal]);
+  }, [detail]);
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -52,10 +54,10 @@ export default function RekapTanggalPage() {
 
   return (
     <div>
-    <h1 className="text-center text-2xl font-bold mb-4 m-4">Rekap Absensi Tanggal</h1>
+    <h1 className="text-center text-2xl font-bold mb-4 m-4">Absen Nama Guru</h1>
        <div className="flex justify-end mb-4 mr-4">
       </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
       {absensi.map((absen, index) => (
         <motion.div
             key={absen.id}
@@ -72,7 +74,7 @@ export default function RekapTanggalPage() {
               <div className="ml-4">
                 <div className="flex items-center">
                   <FaUserCircle className="text-blue-500 mr-2" size={24} />
-                  <p className="text-lg font-semibold mb-2">
+                  <p className="text-md font-semibold mb-2">
                     Nama Guru: {absen.profiles.nama_user}
                   </p>
                 </div>
@@ -84,7 +86,7 @@ export default function RekapTanggalPage() {
               <div className="flex-grow"></div>
               <Button colorScheme={"blue"} variant={Link}>
                 <Link href={`${pathname}/${absen.id_guru}`}>
-                  Rekap Lengkap
+                   Detail
                 </Link>
               </Button>
            
@@ -93,8 +95,8 @@ export default function RekapTanggalPage() {
               <div className="p-4 mt-4 bg-gray-100 rounded-lg">
              
                 <p>Informasi tambahan:</p>
-                <p className="text-xs text-gray-600">Alamat: {absen.profiles.alamat}</p>
-                <p className="text-xs text-gray-600">telepon: {absen.profiles.telepon}</p>
+                <p className="text-sm text-gray-600">Alamat : {absen.profiles.alamat}</p>
+                <p className="text-sm text-gray-600">telepon : {absen.profiles.telepon}</p>
               </div>
             )}
             <div className="absolute top-2 right-2">
