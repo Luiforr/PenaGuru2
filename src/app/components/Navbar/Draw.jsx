@@ -87,6 +87,9 @@ export default function Draw() {
   const handleStatis = () => {
     router.push("/me/statistik");
   };
+  const handleRekap = () => {
+    router.push("/rekap");
+  };
   const handleLogout = async () => {
     try {
       const { error } = await supabase.auth.signOut();
@@ -149,6 +152,12 @@ export default function Draw() {
               onClick={handleStatis}
             >
               Statistik
+            </p>
+            <p
+              className="cursor-pointer font-semibold text-lg mt-2"
+              onClick={handleRekap}
+            >
+              Rekap
             </p>
             <p
               className="cursor-pointer font-semibold text-lg mt-2"
