@@ -24,6 +24,7 @@ import { GrTechnology } from "react-icons/gr";
 import { IoIosHome } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { Skeleton } from "@nextui-org/react";
+import Modalp from "../Laporan/modalp";
 
 export default function LandingPage() {
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -262,6 +263,8 @@ export default function LandingPage() {
   };
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+
   return (
     <>
       {now < checkInTime ? (
@@ -353,6 +356,13 @@ export default function LandingPage() {
               <button className="mt-5 mx-3 w-full bg-blue-500 p-2 text-white rounded-md hover:ease-out duration-300 hover:scale-105 active:scale-100">
                 Edit Profile
               </button>
+            </Link>
+            <Modalp />
+            <Link 
+              href="/me/laporan"
+              className="text-lg mt-5 text-blue-500 bg-white hover:text-white hover:bg-blue-500 mb-28 lg:mb-16 md:mb-16 xl:mb-16 btn flex justify-center mx-5"
+            >
+              Laporan Kegiatan
             </Link>
           </div>
         </div>
@@ -551,6 +561,8 @@ export default function LandingPage() {
           )}
         </ModalContent>
       </Modal>
+    
+        
     </>
   );
 }

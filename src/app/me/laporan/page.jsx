@@ -15,6 +15,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import UserAuth from "@/app/middleware/user";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
 export default function page() {
   return (
     <>
@@ -24,6 +33,7 @@ export default function page() {
 
       <Card margin="4" className="">
         <CardHeader>
+
 
       <div className="flex w-full justify-end items-end flex-wrap md:flex-nowrap gap-4">
         <Select label="Bulan" className="max-w-xs">
@@ -112,6 +122,7 @@ export default function page() {
           </Stack>
         </CardBody>
       </Card>
+     
     </>
   );
 }
