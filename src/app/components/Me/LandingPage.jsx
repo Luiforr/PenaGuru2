@@ -24,7 +24,7 @@ import { GrTechnology } from "react-icons/gr";
 import { IoIosHome } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import { Skeleton } from "@nextui-org/react";
-import Modalp from "../Laporan/modalp";
+import Modalp from "../Laporan/Modalp";
 
 export default function LandingPage() {
   const [isLoaded, setIsLoaded] = React.useState(false);
