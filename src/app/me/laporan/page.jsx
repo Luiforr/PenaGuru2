@@ -198,7 +198,7 @@ export default function Page() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Edit Laporan</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-center">Edit Laporan</ModalHeader>
               <ModalBody>
                 {laporan.map((laporan, index) => (
                   <div className="mb-4" key={index}>
